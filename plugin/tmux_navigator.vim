@@ -20,7 +20,7 @@ function! s:InTmuxSession()
 endfunction
 
 function! s:TmuxPaneCurrentCommand()
-  echo system("tmux display-message -p '#{pane_current_command}'")
+  echo system("rtmux display-message -p '#{pane_current_command}'")
 endfunction
 command! TmuxPaneCurrentCommand call <SID>TmuxPaneCurrentCommand()
 
@@ -53,7 +53,7 @@ function! s:TmuxAwareNavigate(direction)
     if g:tmux_navigator_save_on_switch
       update
     endif
-    let cmd = 'tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR')
+    let cmd = 'rtmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR')
     silent call system(cmd)
     if s:NeedsVitalityRedraw()
       redraw!
